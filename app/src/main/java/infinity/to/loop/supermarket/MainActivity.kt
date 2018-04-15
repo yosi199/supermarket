@@ -26,6 +26,7 @@ class MainActivity : AppCompatActivity() {
 
         this.itemsList = findViewById(R.id.items_list)
         this.itemsList?.layoutManager = LinearLayoutManager(this)
+//        this.itemsList?.animation = DefaultItemAnimator()
         this.itemsList?.adapter = viewmodel.getAdapter()
 
         this.connectionBtn = findViewById(R.id.connectionBtn)

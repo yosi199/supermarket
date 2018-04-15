@@ -20,7 +20,7 @@ class MessageAdapter(private val listener: ItemChoice) : RecyclerView.Adapter<Me
 
     fun update(message: Message) {
         itemsList.add(0, message)
-        notifyDataSetChanged()
+        notifyItemInserted(0)
     }
 
     fun allowPress(allow: Boolean) {
