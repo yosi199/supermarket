@@ -43,7 +43,7 @@ class MessageAdapter(private val listener: ItemChoice) : RecyclerView.Adapter<Me
         drawable.setColor(color)
 
         if (pressAllowed) {
-            holder.itemView?.setOnClickListener({ view -> listener.onItemChoosen(color) })
+            holder.itemView?.setOnClickListener({ _ -> listener.onItemChoosen(color) })
         }
     }
 

@@ -86,5 +86,11 @@ class MainViewModel : ViewModel(),
         handler.post({ adapter.update(message) })
     }
 
+    fun onDestroyCalled() {
+        if (connectionManager.isAlive()) {
+            connectionManager.close()
+        }
+    }
+
 
 }

@@ -9,11 +9,9 @@ import android.transition.Explode
 import android.transition.Slide
 import android.widget.Button
 
-
-
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var viewmodel: MainViewModel
+    private lateinit var viewModel: MainViewModel
     private var connectionBtn: Button? = null
     private var itemsList: RecyclerView? = null
 
@@ -21,23 +19,27 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        this.viewmodel = ViewModelProviders.of(this).get(MainViewModel::class.java)
-        this.viewmodel.setActivity(this)
+        this.viewModel = ViewModelProviders.of(this).get(MainViewModel::class.java)
+        this.viewModel.setActivity(this)
 
         this.itemsList = findViewById(R.id.items_list)
         this.itemsList?.layoutManager = LinearLayoutManager(this)
-//        this.itemsList?.animation = DefaultItemAnimator()
-        this.itemsList?.adapter = viewmodel.getAdapter()
+        this.itemsList?.adapter = viewModel.getAdapter()
 
         this.connectionBtn = findViewById(R.id.connectionBtn)
-        this.connectionBtn?.setOnClickListener(viewmodel)
-        this.viewmodel.setConnectionBtn(connectionBtn as Button)
+        this.connectionBtn?.setOnClickListener(viewModel)
+        this.viewModel.setConnectionBtn(connectionBtn as Button)
 
         val exitTrans = Explode()
         window.exitTransition = exitTrans
 
         val reenterTrans = Slide()
         window.reenterTransition = reenterTrans
+    }
+
+    override fun onDestroy() {
+        viewModel.onDestroyCalled()
+        super.onDestroy()
 
     }
 
